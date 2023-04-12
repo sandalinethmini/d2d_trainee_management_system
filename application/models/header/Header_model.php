@@ -27,6 +27,9 @@ class Header_model extends CI_Model
 		$officer_details		=	false;
 		$circuit_details		=	false;
 		$officer_detail_report	=	false;
+		$sdwan_details          =   false;
+		$sdwan_job_details      =   false;
+		$sdwan_job_report       =   false;
 		
 		$reports	=	false;
 		
@@ -60,11 +63,6 @@ class Header_model extends CI_Model
 							$master_data	=	true;
 							$user_details	=	true;				
 						}
-					/*if ($row["page_name"] == "area_code")
-					{
-						$master_data		=	true;
-						$area_code			=	true;			
-					}*/
 					
 					////////////////////////// Application
 					
@@ -109,6 +107,20 @@ class Header_model extends CI_Model
 							$officer_detail_report	=	true;	
 							$reports	=	true;		
 						}
+						
+					if ($row["page_name"] == "sdwan_details") 
+					{
+						$sdwan_details	=	true;		
+					}
+					if ($row["page_name"] == "sdwan_job_details") 
+					{
+						$sdwan_job_details	=	true;		
+					}
+					if ($row["page_name"] == "sdwan_job_report") 
+					{
+						$sdwan_job_report	=	true;	
+						$reports	=	true;		
+					}
 										
 			}
 									
@@ -123,7 +135,10 @@ class Header_model extends CI_Model
 				'officer_details'=>$officer_details,
 				'circuit_details'=>$circuit_details,
 				'officer_detail_report'=>$officer_detail_report,
-				'reports'=>$reports
+				'reports'=>$reports,
+				'sdwan_details'=>$sdwan_details,
+				'sdwan_job_details'=>$sdwan_job_details,
+				'sdwan_job_report'=>$sdwan_job_report
 			);		
 				
 			$this->db->trans_complete();					

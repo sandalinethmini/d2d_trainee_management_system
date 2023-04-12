@@ -57,8 +57,10 @@
                 <ul id="sm_application" class="list-unstyled collapse">
        
                       <?php if($circuit_details){?><li><a href="index.php/application/Site">Circuit Details</a></li><?php }?>
+                      <?php if($sdwan_details){?><li><a href="index.php/application/SDWANSite">SD WAN Accounts</a></li><?php }?>
                       <?php if($officer_details){?><li><a href="index.php/application/OfficerDetails">Officer Details</a></li><?php }?>  
 					  <?php if($job_details){?><li><a href="index.php/application/Jobs">Job Details</a></li><?php }?>
+                      <?php if($sdwan_job_details){?><li><a href="index.php/application/SDWANJobs">SD WAN Details</a></li><?php }?>
 					                       
                 </ul>
             </li><?php }?>
@@ -72,6 +74,7 @@
                       <?php if($history_reports){?><li><a href="index.php/application/HistoryReports">History Reports</a></li><?php }?>
 					  <?php if($officer_details){?><li><a href="index.php/application/OfficerDetailsReport">Officer Details Report</a></li><?php }?>
 					  <?php if($job_report){?><li><a href="index.php/application/JobReports">Job Details Report</a></li><?php }?>
+                      <?php if($sdwan_job_report){?><li><a href="index.php/application/SDWANJobReports">SD WAN Job Report</a></li><?php }?>
 					  
                                  
                 </ul>
