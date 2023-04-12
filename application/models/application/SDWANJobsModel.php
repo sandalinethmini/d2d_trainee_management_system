@@ -44,7 +44,7 @@ class SDWANJobsModel extends CI_Model {
 		$this->db->from('nw_sd_wan_details');
 		$this->db->join('com_branch','branch_code = sdwan_branch_id','inner');
 		$this->db->join('category_details','category_id = sdwan_category','inner');
-		$this->db->join('provider_details','sdwan_provider_id = sdwan_provider','inner');
+		$this->db->join('nw_sd_wan_provider','sdwan_provider_id = sdwan_provider','inner');
 		$this->db->join('nw_sdwan_job_details','sdwan_id =  sdwan_job_site_id','inner');	
 		$this->db->where('sdwan_job_status', '0');
 		
@@ -175,7 +175,7 @@ class SDWANJobsModel extends CI_Model {
 	{
 		$this->db->select(' sdwan_id,sdwan_provider_description');
 		$this->db->from('nw_sd_wan_details');
-		$this->db->join('provider_details','sdwan_provider_id =  sdwan_provider','inner');
+		$this->db->join('nw_sd_wan_provider','sdwan_provider_id =  sdwan_provider','inner');
 		$this->db->where('sdwan_category', $categoryList);
 		$this->db->where('sdwan_branch_id', $branchCode);
 		$query=$this->db->get();
@@ -197,7 +197,7 @@ class SDWANJobsModel extends CI_Model {
 	{
 		$this->db->select(' sdwan_id,sdwan_provider_description');
 		$this->db->from('nw_sd_wan_details');
-		$this->db->join('provider_details','sdwan_provider_id =  sdwan_provider','inner');
+		$this->db->join('nw_sd_wan_provider','sdwan_provider_id =  sdwan_provider','inner');
 		$this->db->where('sdwan_category', $categoryList);
 		$this->db->where('sdwan_branch_id', $branchCode);
 		$query=$this->db->get();

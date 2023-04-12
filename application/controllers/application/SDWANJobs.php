@@ -118,6 +118,7 @@ class SDWANJobs extends Header_page {
 
 		$output = array(
 						"draw" => $_POST['draw'],
+						//"recordsTotal" => 0,
 						"recordsTotal" => $this->JobsModel->count_all(),
 						"recordsFiltered" => $this->JobsModel->count_filtered(),
 						"data" => $data,

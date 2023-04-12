@@ -264,6 +264,7 @@ function hello(){
 			"processing": true, //Feature control the processing indicator.
 			"serverSide": true, //Feature control DataTables' server-side processing mode.
 			"order": [], //Initial no order.
+			 "language": {  "infoFiltered": ""  },
 	
 			// Load data for the table's content from an Ajax source
 			"ajax": {

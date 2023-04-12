@@ -116,7 +116,8 @@ class SDWANSite extends Header_page {
 
 		$output = array(
 						"draw" => $_POST['draw'],
-						"recordsTotal" => $this->Site->count_all(),
+						"recordsTotal" => 0,
+						//"recordsTotal" => $this->Site->count_all(),
 						"recordsFiltered" => $this->Site->count_filtered(),
 						"data" => $data,
 				);
