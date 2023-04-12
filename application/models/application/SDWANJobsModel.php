@@ -34,17 +34,17 @@ class SDWANJobsModel extends CI_Model {
 		$this->db->select( ' branch_code,
 							 branch_description,
 							 category_name,
-							 provider_description,
+							 sdwan_provider_description,
 							 sdwan_account_no,
 							 sdwan_job_id,
 							 sdwan_job_down_time,
 							 sdwan_job_status,
 							 category_id,
-							 provider_id');
+							 sdwan_provider_id');
 		$this->db->from('nw_sd_wan_details');
 		$this->db->join('com_branch','branch_code = sdwan_branch_id','inner');
 		$this->db->join('category_details','category_id = sdwan_category','inner');
-		$this->db->join('provider_details','provider_id = sdwan_provider','inner');
+		$this->db->join('provider_details','sdwan_provider_id = sdwan_provider','inner');
 		$this->db->join('nw_sdwan_job_details','sdwan_id =  sdwan_job_site_id','inner');	
 		$this->db->where('sdwan_job_status', '0');
 		
@@ -173,9 +173,9 @@ class SDWANJobsModel extends CI_Model {
 	
 	public function getProviderDetails($categoryList,$branchCode)
 	{
-		$this->db->select(' sdwan_id,provider_description');
+		$this->db->select(' sdwan_id,sdwan_provider_description');
 		$this->db->from('nw_sd_wan_details');
-		$this->db->join('provider_details','provider_id =  sdwan_provider','inner');
+		$this->db->join('provider_details','sdwan_provider_id =  sdwan_provider','inner');
 		$this->db->where('sdwan_category', $categoryList);
 		$this->db->where('sdwan_branch_id', $branchCode);
 		$query=$this->db->get();
@@ -183,21 +183,21 @@ class SDWANJobsModel extends CI_Model {
 		$provider_data= $query->result();
 		
 		$provider_arr[] = array( 'sdwan_id'	 => "",
-		   						'provider_description' => "-- Select Provider --");
+		   						'sdwan_provider_description' => "-- Select Provider --");
 		
         foreach ($provider_data as $results)
 		{
 			 $provider_arr[] = array('sdwan_id' 	=> $results->sdwan_id,
-		   							'provider_description' => $results->provider_description);	
+		   							'sdwan_provider_description' => $results->sdwan_provider_description);	
         }
 		return 	$provider_arr;
 	}
 	
 	public function loadProviderDetails($categoryList,$branchCode)
 	{
-		$this->db->select(' sdwan_id,provider_description');
+		$this->db->select(' sdwan_id,sdwan_provider_description');
 		$this->db->from('nw_sd_wan_details');
-		$this->db->join('provider_details','provider_id =  sdwan_provider','inner');
+		$this->db->join('provider_details','sdwan_provider_id =  sdwan_provider','inner');
 		$this->db->where('sdwan_category', $categoryList);
 		$this->db->where('sdwan_branch_id', $branchCode);
 		$query=$this->db->get();
@@ -206,7 +206,7 @@ class SDWANJobsModel extends CI_Model {
 		$provider_arr = array('' => '-- Select Provider --');
 		foreach ($query->result_array() as $row) 
 		{
-			$provider_arr[$row['sdwan_id']] = $row['provider_description'];
+			$provider_arr[$row['sdwan_id']] = $row['sdwan_provider_description'];
 		}
 		return $provider_arr;
 	}

@@ -23,7 +23,7 @@ class SDWANJobReportsModel extends CI_Model {
 								 sdwan_job_complaint_id,
 								 job_remark_description,
 								 sdwan_account_no,
-								 provider_description,
+								 sdwan_provider_description,
 								 category_name,
 								 branch_description,
 								 sdwan_branch_id,
@@ -33,7 +33,7 @@ class SDWANJobReportsModel extends CI_Model {
 			$this->db->from('nw_sdwan_job_details');
 			$this->db->join('job_remark_details','job_remark_id = sdwan_job_remark','inner');
 			$this->db->join('nw_sd_wan_details','sdwan_id =  sdwan_job_site_id','inner');
-			$this->db->join('provider_details','provider_id = sdwan_provider','inner');
+			$this->db->join('provider_details','sdwan_provider_id = sdwan_provider','inner');
 			$this->db->join('category_details','category_id = sdwan_category','inner');
 			$this->db->join('com_branch','branch_code = sdwan_branch_id','inner');
 			
@@ -103,7 +103,7 @@ class SDWANJobReportsModel extends CI_Model {
 				$pdf->Cell(10 ,6,$number,1,0,'C');
 				$pdf->Cell(60 ,6,$row['sdwan_branch_id']."  -  ".$row['branch_description'],1,0,'L');
 				$pdf->Cell(25 ,6,$row['category_name'],1,0,'C');		
-				$pdf->Cell(30 ,6,$row['provider_description'],1,0,'C');	
+				$pdf->Cell(30 ,6,$row['sdwan_provider_description'],1,0,'C');	
 				//$pdf->Cell(25 ,6,$row['site_iprange'],1,0,'C');
 				$pdf->Cell(40 ,6,$row['sdwan_account_no'],1,0,'C');
 				$pdf->Cell(45 ,6,$row['sdwan_job_down_time'],1,0,'C');
@@ -125,7 +125,7 @@ class SDWANJobReportsModel extends CI_Model {
 								 sdwan_job_complaint_id,
 								 job_remark_description,
 								 sdwan_account_no,
-								 provider_description,
+								 sdwan_provider_description,
 								 category_name,
 								 branch_description,
 								 sdwan_branch_id,
@@ -135,7 +135,7 @@ class SDWANJobReportsModel extends CI_Model {
 			$this->db->from('nw_sdwan_job_details');
 			$this->db->join('job_remark_details','job_remark_id = sdwan_job_remark','inner');
 			$this->db->join('nw_sd_wan_details','sdwan_id =  sdwan_job_site_id','inner');
-			$this->db->join('provider_details','provider_id = sdwan_provider','inner');
+			$this->db->join('provider_details','sdwan_provider_id = sdwan_provider','inner');
 			$this->db->join('category_details','category_id = sdwan_category','inner');
 			$this->db->join('com_branch','branch_code = sdwan_branch_id','inner');
 			//$this->session->userdata('user_full_name');
@@ -248,9 +248,9 @@ class SDWANJobReportsModel extends CI_Model {
 	
 	public function getProvider()
 	{
-		$this->db->select('provider_id,provider_description');
+		$this->db->select('sdwan_provider_id,sdwan_provider_description');
 		$this->db->from('provider_details');
-		$this->db->order_by('provider_description', 'asc');
+		$this->db->order_by('sdwan_provider_description', 'asc');
 		$query=$this->db->get();
 		
 		$officerList = array();
@@ -258,7 +258,7 @@ class SDWANJobReportsModel extends CI_Model {
 		$officerList = array('' => '-- Select Provider --');
 		foreach ($query->result_array() as $row) 
 		{
-			$officerList[$row['provider_id']] = $row['provider_description'];
+			$officerList[$row['sdwan_provider_id']] = $row['sdwan_provider_description'];
 		}	
 		return $officerList;
 	}
