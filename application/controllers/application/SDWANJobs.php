@@ -100,7 +100,7 @@ class SDWANJobs extends Header_page {
 			$row[] = $no;
 			$row[] = $items->branch_code." - ".$items->branch_description;
 			$row[] = $items->category_name;
-			$row[] = $items->provider_description;
+			$row[] = $items->sdwan_provider_description;
 			$row[] = $items->sdwan_account_no;
 			$row[] = $items->sdwan_job_down_time;
 			
@@ -108,7 +108,7 @@ class SDWANJobs extends Header_page {
 			$row[] = $items->sdwan_job_status;
 			
 			$row[] = $items->category_id;
-			$row[] = $items->provider_id;
+			$row[] = $items->sdwan_provider_id;
 			
 			$data[] = $row;
 

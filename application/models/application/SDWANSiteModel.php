@@ -131,9 +131,9 @@ class SDWANSiteModel extends CI_Model {
 
 	public function getProvider()
 	{
-		$this->db->select('provider_id,provider_description');
-		$this->db->from('provider_details');
-		$this->db->order_by('provider_description', 'asc');
+		$this->db->select('sdwan_provider_id,sdwan_provider_description');
+		$this->db->from('nw_sd_wan_provider');
+		$this->db->order_by('sdwan_provider_description', 'asc');
 		$query=$this->db->get();
 		
 		$officerList = array();
@@ -141,7 +141,7 @@ class SDWANSiteModel extends CI_Model {
 		$officerList = array('' => 'Select Provider');
 		foreach ($query->result_array() as $row) 
 		{
-			$officerList[$row['provider_id']] = $row['provider_description'];
+			$officerList[$row['sdwan_provider_id']] = $row['sdwan_provider_description'];
 		}	
 		return $officerList;
 	}

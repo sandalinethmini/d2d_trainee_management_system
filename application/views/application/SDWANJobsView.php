@@ -252,7 +252,7 @@ function hello(){
 			$.ajax({type: "POST",  async : false,  dataType: "json",	url: "index.php/application/SDWANJobs/getProviderDetails",data:{'categoryList':categoryList, 'branchCode':branchCode},	success: function (html) {	
 				$.each(html, function(i, option) {
 					
-				 $('#cmbProvider').append($('<option/>').attr("value", option.sdwan_id).text(option.provider_description));}); 
+				 $('#cmbProvider').append($('<option/>').attr("value", option.sdwan_id).text(option.sdwan_provider_description));}); 
 			 },  error: function(html){  }	});	   
 	   }
 	   
