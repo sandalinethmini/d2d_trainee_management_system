@@ -78,7 +78,7 @@ $db['default'] = array(
 	'hostname' => 'localhost',
 	'username' => 'root',
 	'password' => '',
-	'database' => 'network_sd_wan',
+	'database' => 'd2d_trainee_system',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
@@ -95,15 +95,13 @@ $db['default'] = array(
 	'save_queries' => FALSE
 );
 
-$db['customer_db'] = array(
+$db['oracle'] = array(
 	'dsn'	=> '',
-	//'hostname' => '//192.168.1.102',
-	'hostname' => 'localhost',
-
-	'username' => 'root',
-	'password' => '',
-	'database' => 'billingsystem',
-	'dbdriver' => 'mysqli',
+	'hostname' => '172.20.200.12',
+	'username' => 'test_6',
+	'password' => 'test_6',
+	'database' => 'RDBFIN',
+	'dbdriver' => 'oci8',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
 	'db_debug' => FALSE,
@@ -118,3 +116,4 @@ $db['customer_db'] = array(
 	'failover' => array(),
 	'save_queries' => TRUE
 );
+

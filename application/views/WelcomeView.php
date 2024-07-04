@@ -27,6 +27,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <div class="card">
                     <div class="card-body">
                         <form class="form-signin" action="<?php echo base_url().'index.php/session/SessionDataCon'?>" method="post">
+                        
+                        
                         	<div class="input-group mb-3">
                                  <?php 
 									if($this->session->flashdata('fail'))
@@ -41,6 +43,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <span class="input-group-text"><i class="fa fa-user"></i></span>
                                 </div>
                                 <input type="text" class="form-control" placeholder="Username" required id="txtUserId" name="txtUserId">
+                                <?php echo form_error('txtEmpNo');  ?>
                             </div>
 
                             <div class="input-group mb-3">
@@ -48,9 +51,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <span class="input-group-text"><i class="fa fa-key"></i></span>
                                 </div>
                                 <input type="password" class="form-control" placeholder="Password" id="txtPassword" name="txtPassword">
+                                <?php echo form_error('txtEmpNo');  ?>
                             </div>
-
-                           
 
                             <div class="row">
                                 

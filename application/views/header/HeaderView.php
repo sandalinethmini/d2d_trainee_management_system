@@ -6,16 +6,16 @@
     <base href="<?php echo base_url(); ?>">
 	<?php include 'headerincludes/head_includes.php'; ?>
 
-    <title>RDB | Network</title>
+    <title>RDB</title>
     
 
 		
 </head>
 <body class="bg-light">
 
-<nav class="navbar navbar-expand navbar-dark bg-primary" >
+<nav class="navbar navbar-expand navbar-dark bg-dark" >
     <a class="sidebar-toggle mr-3" href="#"><i class="fa fa-bars"></i></a>
-    <a class="navbar-brand" href="index.php/Home"> Application Manager</a>
+    <a class="navbar-brand" href="index.php/Home">D2D & Trainee Management System</a>
 
   <div class="navbar-collapse collapse">
         <ul class="navbar-nav ml-auto">
@@ -35,51 +35,56 @@
 <div class="d-flex">
     <div class="sidebar sidebar-dark bg-dark">
         <ul class="list-unstyled">
-            <li><a href="index.php/Home"><i class="fa fa-fw fa-tachometer-alt"></i> Home</a></li>
-           <?php if($master_data){?> <li>
-                <a href="#sm_base" data-toggle="collapse">
-                    <i class="fa fa-fw fa-cube"></i> Administrator
-                </a>
-                
-        
+            <li><a href="index.php/Home"><i class="fa fa-university" aria-hidden="true"></i> Home</a></li>
+           <?php if($administration || $user_accounts || $set_time){?> <li>
+                <a href="#sm_base" data-toggle="collapse"><i class="fa fa-user" aria-hidden="true"></i> Administrator</a>
+
                 <ul id="sm_base" class="list-unstyled collapse">
-               		<?php if($user_details){?><li><a href="index.php/masterData/UserDetails">User Management</a></li><?php }?>
-                   <?php /*?> <?php if($area_code){?><li><a href="index.php/masterData/AreaDetails">Area Details</a></li><?php }?><?php */?>
+                    <?php if($user_accounts){?><li><a href="index.php/masterData/UserDetails"><i class="fa fa-user"></i> User Details</a></li><?php }?> 
+                    <?php if($set_time){?><li><a href="index.php/SetTimeController"><i class="fa fa-clock"></i> Set Report Time</a></li><?php }?>  
+                </ul>
+            </li><?php }?>
+          
+          	<?php if($upload_file || $atm_switch_file){?> <li>
+                <a href="#sm_base1" data-toggle="collapse"><i class="fa fa-file" aria-hidden="true"></i> Employee</a>
+                
+                <ul id="sm_base1" class="list-unstyled collapse">
+                    <l>
+          
+                <?php if($account_search){?><li><a href="index.php/newd2d"><i class="fa fa-search" aria-hidden="true"></i></i> D2D</a></li><?php }?>
+                
+                </li>
+                
+
+               <li>
+          
+                <?php if($account_search){?><li><a href="index.php/check_trainee"><i class="fa fa-search" aria-hidden="true"></i></i> Trainee</a></li><?php }?>
+                
+                
+                </ul>
+            </li><?php }?> 
+            <?php if($account_search){?><li><a href="index.php/register_trainee/"><i class="fa fa-search" aria-hidden="true"></i></i> Register Trainee</a></li><?php }?>
+                      
+
+			<?php if($account_search){?><li><a href="index.php/all_trainee"><i class="fa fa-search" aria-hidden="true"></i></i>Active Trainees</a></li><?php }?>
+            <?php if($account_search){?><li><a href="index.php/alltrainee"><i class="fa fa-search" aria-hidden="true"></i></i> Full Training History</a></li><?php }?>
+            <?php if($account_search){?><li><a href="index.php/recent_trainee"><i class="fa fa-search" aria-hidden="true"></i></i> Recent Trainees</a></li><?php }?>
+            
+
+            <?php if($account_search){?><li><a href="index.php/early_disable"><i class="fa fa-search" aria-hidden="true"></i></i> Early Disable Page</a></li><?php }?>
+
+			<?php if($download_status_file || $settlement_file){?> <li>
+                <a href="#sm_base2" data-toggle="collapse"><i class="fa fa-file" aria-hidden="true"></i> Reports</a>
+                
+                <ul id="sm_base2" class="list-unstyled collapse">
+          			<?php if($download_status_file){?><li><a href="index.php/trainee_pdf"><i class="fa fa-fw fa-download"></i> pdf</a></li><?php }?>
+					
+					<?php if($settlement_file){?><li><a href="index.php/PdfReport"><i class="fa fa-fw fa-download"></i> Download Settlement File</a></li><?php }?>
                     
                 </ul>
-            </li><?php }?>
-           
-            
-            <?php if($application){?><li>
-                <a href="#sm_application" data-toggle="collapse" aria-expanded="true">
-                    <i class="fa fa-fw fa-table"></i> Application
-                </a>
-                <ul id="sm_application" class="list-unstyled collapse">
-       
-                      <?php if($circuit_details){?><li><a href="index.php/application/Site">Circuit Details</a></li><?php }?>
-                      <?php if($sdwan_details){?><li><a href="index.php/application/SDWANSite">SD WAN Accounts</a></li><?php }?>
-                      <?php if($officer_details){?><li><a href="index.php/application/OfficerDetails">Officer Details</a></li><?php }?>  
-					  <?php if($job_details){?><li><a href="index.php/application/Jobs">Connection Jobs</a></li><?php }?>
-                      <?php if($sdwan_job_details){?><li><a href="index.php/application/SDWANJobs">SD WAN Jobs</a></li><?php }?>
-					                       
-                </ul>
-            </li><?php }?>
-			
-		 	<?php if($reports){?><li>
-                <a href="#sm_report" data-toggle="collapse" aria-expanded="true">
-                    <i class="fa fa-fw fa-table"></i> Reports
-                </a>
-                <ul id="sm_report" class="list-unstyled collapse">
-
-                      <?php if($history_reports){?><li><a href="index.php/application/HistoryReports">History Reports</a></li><?php }?>
-					  <?php if($officer_details){?><li><a href="index.php/application/OfficerDetailsReport">Officer Details Report</a></li><?php }?>
-					  <?php if($job_report){?><li><a href="index.php/application/JobReports">Job Details Report</a></li><?php }?>
-                      <?php if($sdwan_job_report){?><li><a href="index.php/application/SDWANJobReports">SD WAN Job Report</a></li><?php }?>
-					  
-                                 
-                </ul>
-            </li><?php }?>
-
-           
+            </li><?php }?> 
         </ul>
     </div>        
+
+
+    

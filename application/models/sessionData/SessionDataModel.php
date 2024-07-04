@@ -10,13 +10,14 @@ class SessionDataModel extends CI_Model
 	{		
 		try
 		{			
-			//$query	=	$this->db->get_where('ceb_system_users', array('system_user_name' => $userName,'system_user_password'=> md5($password),'system_user_status'=>1));
+			//$query	=	$this->db->get_where('system_users', array('system_user_name' => $userName,'system_user_password'=> md5($password),'system_user_status'=>1));
 			
-			$this->db->select('system_user_id,system_user_name,system_user_full_name,system_user_status');
-			$this->db->from('ceb_system_users');
-			//$this->db->join('ceb_area','area_id = system_user_area_id','inner');
+			$this->db->select('system_user_id,system_user_name,system_user_full_name,system_user_status,province_code,branch_code');
+			$this->db->from('system_users');
+			//$this->db->join('area','area_id = system_user_area_id','inner');
 			$this->db->where('system_user_name',$userName);
 			$this->db->where('system_user_password',md5($password));
+			//$this->db->where('province_code',$province);
 			//$this->db->where('system_user_status',1);
 			$query = $this->db->get();
 			
@@ -25,14 +26,16 @@ class SessionDataModel extends CI_Model
 				$row 			= 	$query->row();					
 				$user_id		=	$row->system_user_id;
 				$user_name		=	$row->system_user_name;
-				//$user_area		=	$row->area_sub_description;
+				$province		=	$row->province_code;
 				$user_full_name	=	$row->system_user_full_name;
+				$branch         =   $row->branch_code;
+				//$district  =   $row->district_code;
 				
 				$status	=	$row->system_user_status;
 				
 				if($status==1 || $status==5)
 				{
-					$session_data		=	array('user_id'=>$user_id,'user_name'=>$user_name,'user_full_name'=>$user_full_name);				
+					$session_data		=	array('user_id'=>$user_id,'user_name'=>$user_name,'user_full_name'=>$user_full_name, 'province_code'=>$province, 'branch_code'=>$branch);				
 					$this->session->set_userdata($session_data);
 					
 					$data_log			=	array('log_session_id'=>session_id(),'log_ip'=>$_SERVER['REMOTE_ADDR'],'log_user_id'=>$user_id,'log_login_time'=>date("Y-m-d G:i:s"));
@@ -41,8 +44,8 @@ class SessionDataModel extends CI_Model
 					
 					$this->db->trans_begin();
 															
-					$this->db->insert('ceb_log_catalog',$data_log);
-					$this->db->update('ceb_last_session', $data_last, "last_user_id = $user_id");								
+					$this->db->insert('log_catalog',$data_log);
+					$this->db->update('last_session', $data_last, "last_user_id = $user_id");								
 					
 					if ($this->db->trans_status() === FALSE)
 					{
